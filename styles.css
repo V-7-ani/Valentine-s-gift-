@@ -4,7 +4,7 @@ body {
     padding: 0;
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(135deg, #ff6f61, #ff3b2f);
-    color: #fff;
+    color: #fff; /* Default text color */
     text-align: center;
     height: 100vh;
     display: flex;
@@ -28,6 +28,8 @@ h1 {
     font-size: 4rem;
     margin-bottom: 20px;
     animation: slideIn 1.5s ease-in-out;
+    color: #fff; /* White color for the heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow for better contrast */
 }
 
 .love-message {
@@ -35,11 +37,13 @@ h1 {
     line-height: 1.6;
     margin-bottom: 30px;
     animation: fadeIn 2.5s ease-in-out;
+    color: #fff; /* White color for the message */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add shadow for better contrast */
 }
 
 .btn {
     background: #fff;
-    color: #ff3b2f;
+    color: #ff3b2f; /* Red color for the button text */
     padding: 15px 30px;
     border-radius: 50px;
     text-decoration: none;
@@ -50,7 +54,7 @@ h1 {
 
 .btn:hover {
     background: #ff6f61;
-    color: #fff;
+    color: #fff; /* White color on hover */
     transform: scale(1.1);
 }
 
