@@ -1,4 +1,4 @@
-// Floating hearts effect
+// Floating Hearts Effect
 function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -10,14 +10,16 @@ function createHeart() {
 
 setInterval(createHeart, 500);
 
-// Play background music when the page loads
+// Play Background Music When Page Loads
 document.addEventListener("DOMContentLoaded", function () {
     let audio = document.getElementById("bg-music");
-    audio.volume = 0.5;
-    audio.play();
+    if (audio) {
+        audio.volume = 0.5;
+        audio.play().catch(error => console.log("Auto-play blocked:", error));
+    }
 });
 
-// Open the gift button action
+// Open the Gift Button Action
 document.querySelector(".btn").addEventListener("click", function() {
     alert("Surprise! More surprises coming soon! 🎁❤️");
 });
