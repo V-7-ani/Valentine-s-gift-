@@ -18,6 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Open the gift button action
-function openGift() {
+document.querySelector(".btn").addEventListener("click", function() {
     alert("Surprise! More surprises coming soon! 🎁❤️");
-}
+});
