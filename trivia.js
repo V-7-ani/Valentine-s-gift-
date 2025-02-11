@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const quizContainer = document.getElementById("quiz-container");
     const finalMessage = document.getElementById("final-message");
-    let currentQuestionIndex = 0;
     let correctAnswers = 0;
 
-    // Questions and Answers (emoji removed from answer texts)
+    // Questions and Answers
     const questions = [
         { 
             question: "When is our anniversary?", 
@@ -13,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         { 
             question: "What's the first nickname you ever gave me?", 
-            answers: ["Ani", "Dear", "Baby", "Nigga"], 
+            answers: ["Ani", "Dear", "Baby", "Love"], 
             correct: 1 
         },
         { 
@@ -28,9 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    // Load only the current question
-    function loadCurrentQuestion() {
-        quizContainer.innerHTML = ""; // clear previous content
+    let currentQuestionIndex = 0;
+
+    // Function to show one question at a time
+    function loadNextQuestion() {
+        quizContainer.innerHTML = ""; // Clear previous question
 
         if (currentQuestionIndex < questions.length) {
             const q = questions[currentQuestionIndex];
@@ -39,80 +40,84 @@ document.addEventListener("DOMContentLoaded", function () {
             questionDiv.classList.add("question");
 
             const questionText = document.createElement("h2");
-            questionText.innerText = q.question;
+            questionText.innerHTML = q.question;
             questionDiv.appendChild(questionText);
 
-            q.answers.forEach((answer, index) => {
+            q.answers.forEach((answer, i) => {
                 const button = document.createElement("button");
-                button.innerText = answer;
-                button.onclick = () => checkAnswer(index, q.correct, button);
+                button.innerHTML = answer;
+                button.onclick = () => checkAnswer(i, q.correct);
                 questionDiv.appendChild(button);
             });
 
             quizContainer.appendChild(questionDiv);
         } else {
-            // When all questions are answered
+            // All questions answered correctly
             quizContainer.classList.add("hidden");
             finalMessage.classList.remove("hidden");
-            fireworksEffect();
+            startFireworks();
         }
     }
 
-    // Check Answer and proceed to next question if correct
-    function checkAnswer(selectedIndex, correctIndex, button) {
+    // Check Answer and Move to Next Question
+    function checkAnswer(selectedIndex, correctIndex) {
         if (correctIndex === "all" || selectedIndex === correctIndex) {
-            button.style.backgroundColor = "lightgreen";
-            confettiEffect();
             correctAnswers++;
             currentQuestionIndex++;
-            setTimeout(() => {
-                loadCurrentQuestion();
-            }, 1000);  // slight delay before loading the next question
+            setTimeout(loadNextQuestion, 500); // Load next question after short delay
         } else {
-            button.style.backgroundColor = "red";
-            bombEffect();
+            alert("Nope, try again! 😆");
         }
     }
 
-    // 🎊 Confetti Effect
-    function confettiEffect() {
-        const confetti = document.createElement("div");
-        confetti.innerHTML = "🎊";
-        confetti.style.position = "absolute";
-        confetti.style.left = Math.random() * window.innerWidth + "px";
-        confetti.style.top = "0px";
-        confetti.style.fontSize = "30px";
-        confetti.style.animation = "fall 2s linear";
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 2000);
-    }
+    // 🎆 Firework Animation Effect
+    function startFireworks() {
+        const canvas = document.createElement("canvas");
+        document.body.appendChild(canvas);
+        canvas.style.position = "fixed";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.width = "100vw";
+        canvas.style.height = "100vh";
+        canvas.style.pointerEvents = "none";
+        const ctx = canvas.getContext("2d");
 
-    // 💣 Bomb Effect
-    function bombEffect() {
-        alert("💣 Boom! Nope, try again! 😆");
-    }
-
-    // 🎇 Fireworks Effect
-    function fireworksEffect() {
-        for (let i = 0; i < 10; i++) {
-            const firework = document.createElement("div");
-            firework.innerHTML = "🎇";
-            firework.style.position = "absolute";
-            firework.style.left = Math.random() * window.innerWidth + "px";
-            firework.style.top = Math.random() * window.innerHeight + "px";
-            firework.style.fontSize = "40px";
-            document.body.appendChild(firework);
-            setTimeout(() => firework.remove(), 3000);
+        let fireworks = [];
+        function createFirework() {
+            fireworks.push({
+                x: Math.random() * window.innerWidth,
+                y: window.innerHeight,
+                size: Math.random() * 3 + 2,
+                speed: Math.random() * 3 + 2,
+                color: `hsl(${Math.random() * 360}, 100%, 60%)`
+            });
         }
+
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            fireworks.forEach((fw, index) => {
+                ctx.beginPath();
+                ctx.arc(fw.x, fw.y, fw.size, 0, Math.PI * 2);
+                ctx.fillStyle = fw.color;
+                ctx.fill();
+                fw.y -= fw.speed;
+                if (fw.y < 0) fireworks.splice(index, 1);
+            });
+
+            requestAnimationFrame(animateFireworks);
+        }
+
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createFirework, i * 200);
+        }
+        animateFireworks();
+
+        // Remove canvas after 5 seconds
+        setTimeout(() => {
+            document.body.removeChild(canvas);
+        }, 5000);
     }
 
-    // Navigate to the next page (final surprise)
-    function nextPage() {
-        window.location.href = "final-surprise.html";  // Change this if needed
-    }
-    // Expose nextPage to global scope so it can be called from HTML
-    window.nextPage = nextPage;
-
-    // Load the first question on page load
-    loadCurrentQuestion();
+    // Load first question
+    loadNextQuestion();
 });
