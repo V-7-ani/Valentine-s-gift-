@@ -10,7 +10,7 @@ body {
     text-align: center;
 }
 
-/* Stars (Appear only in the top half) */
+/* Stars (Only appear in the top half of the screen) */
 .star {
     position: absolute;
     width: 5px;
