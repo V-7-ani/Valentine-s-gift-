@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
         star.classList.add("star");
         star.style.top = Math.random() * 45 + "vh";  // Restricts stars to the top half
         star.style.left = Math.random() * 100 + "vw";
+        star.style.backgroundColor = "silver"; // Set silver color explicitly
+        star.style.boxShadow = "0 0 10px silver"; // Ensure the glow effect
 
         // Add click event to reveal message
         star.addEventListener("click", function () {
