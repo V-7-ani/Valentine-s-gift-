@@ -56,6 +56,11 @@ document.addEventListener("DOMContentLoaded", function () {
             quizContainer.classList.add("hidden");
             finalMessage.classList.remove("hidden");
             startFireworks();
+            
+            // Redirect to Starry Page after 5 seconds
+            setTimeout(() => {
+                window.location.href = "starry.html";
+            }, 5000);
         }
     }
 
