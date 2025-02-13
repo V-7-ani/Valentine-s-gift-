@@ -10,15 +10,16 @@ body {
     text-align: center;
 }
 
-/* Stars (Only appear in the top half of the screen) */
+/* Stars (Now glow slightly) */
 .star {
     position: absolute;
     width: 5px;
     height: 5px;
     background: white;
     border-radius: 50%;
-    animation: twinkle 1.5s infinite alternate;
+    animation: twinkle 1.5s infinite alternate, star-glow 2s infinite alternate;
     cursor: pointer;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 /* Star Twinkle Effect */
@@ -27,18 +28,31 @@ body {
     100% { opacity: 1; }
 }
 
+/* Glow Animation for Stars */
+@keyframes star-glow {
+    0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+    100% { box-shadow: 0 0 10px rgba(255, 255, 255, 1); }
+}
+
 /* Glowing Final Star */
 .final-star {
     width: 10px;
     height: 10px;
     background: gold;
-    animation: glow 1s infinite alternate;
+    animation: glow 1s infinite alternate, final-star-glow 2s infinite alternate;
+    box-shadow: 0 0 10px gold;
 }
 
 /* Glow Animation */
 @keyframes glow {
     0% { box-shadow: 0 0 10px gold; }
     100% { box-shadow: 0 0 20px yellow; }
+}
+
+/* Stronger Glow for Final Star */
+@keyframes final-star-glow {
+    0% { box-shadow: 0 0 15px gold; }
+    100% { box-shadow: 0 0 25px yellow; }
 }
 
 /* Message Box (Blends with background) */
