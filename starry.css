@@ -10,27 +10,25 @@ body {
     text-align: center;
 }
 
-/* Stars (Only appear in the top half of the screen) */
-/* Increased size to 8px and added a white glow */
+/* Stars (Silver appearance with a soft glow) */
 .star {
     position: absolute;
     width: 8px;
     height: 8px;
-    background: white;
+    background: silver; /* Changed from black to silver */
     border-radius: 50%;
     animation: twinkle 1.5s infinite alternate;
     cursor: pointer;
-    box-shadow: 0 0 10px white; /* Simple glow */
+    box-shadow: 0 0 10px silver; /* Soft glow effect */
 }
 
 /* Star Twinkle Effect */
 @keyframes twinkle {
-    0% { opacity: 0.3; }
+    0% { opacity: 0.5; }
     100% { opacity: 1; }
 }
 
 /* Glowing Final Star */
-/* Increased size slightly and added glow */
 .final-star {
     width: 12px;
     height: 12px;
