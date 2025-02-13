@@ -1,0 +1,93 @@
+/* Background - Night Sky */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('https://i.ibb.co/MxHnJwcV/3ec15a73af546d0946251d8e9efe9632.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    text-align: center;
+}
+
+/* Stars (Appear only in the top half) */
+.star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite alternate;
+    cursor: pointer;
+}
+
+/* Star Twinkle Effect */
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Glowing Final Star */
+.final-star {
+    width: 10px;
+    height: 10px;
+    background: gold;
+    animation: glow 1s infinite alternate;
+}
+
+/* Glow Animation */
+@keyframes glow {
+    0% { box-shadow: 0 0 10px gold; }
+    100% { box-shadow: 0 0 20px yellow; }
+}
+
+/* Message Box (Blends with background) */
+#message-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 20px;
+    display: none;
+    color: white;
+}
+
+/* Final Message */
+#final-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    display: none;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Glowing Final Button */
+#final-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    background: #ffcc00;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: button-glow 1.5s infinite alternate;
+}
+
+@keyframes button-glow {
+    0% { box-shadow: 0 0 10px #ffcc00; }
+    100% { box-shadow: 0 0 20px #ff6600; }
+}
