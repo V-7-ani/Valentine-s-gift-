@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
         starContainer.style.display = "none";
     });
 
-    // Button functionality to redirect or perform an action
+    // Redirect to Final Page on button click
     finalButton.addEventListener("click", function () {
-        alert("Redirecting to the Final Page!"); // You can replace with: window.location.href = 'final.html';
+        window.location.href = "final.html"; // Redirects to the Final Page
     });
 
     starContainer.appendChild(finalStar);
